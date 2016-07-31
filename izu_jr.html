@@ -1,0 +1,168 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style>   
+            .tokai
+            {
+                border: 3px solid #F68B1E;
+                background-color: white;
+                position: absolute;
+                z-index: 3;
+                width: 25px;
+                height: 15px;
+                font-size: 12px;
+                text-align: center;
+                cursor: pointer;
+            }
+            
+            .jrito
+            {
+                border: 3px solid #009900;
+                background-color: white;
+                position: absolute;
+                z-index: 3;
+                width: 25px;
+                height: 15px;
+                font-size: 12px;
+                text-align: center;
+                cursor: pointer;
+            }
+            
+            .izukyu
+            {
+                border: 3px solid #0033FF;
+                background-color: white;
+                position: absolute;
+                z-index: 3;
+                width: 25px;
+                height: 15px;
+                font-size: 12px;
+                text-align: center;
+                cursor: pointer;
+            }
+            
+            .sunzuline
+            {
+                border: 3px solid #127BBF;
+                background-color: white;
+                position: absolute;
+                z-index: 3;
+                width: 25px;
+                height: 15px;
+                font-size: 12px;
+                text-align: center;
+                cursor: pointer;
+            }
+        </style>
+        <script type="text/javascript">
+            function getInfos(id)
+            {
+                getSceneryInfo(id);
+                //getStationInfo(id);
+            }
+        
+            function getSceneryInfo(id)
+            {
+                var jsonInfo = { 
+                    "t2" : [
+                        {"site":"熱海城", "min":25}, 
+                        {"site":"起雲閣", "min":18},
+                        {"site":"熱海Sun Beach", "min":12},
+                        {"site":"親水公園", "min":16},
+                        {"site":"遊覽船", "min":16}
+                    ],
+                    "j1" : [
+                        {"site":"熱海城", "min":25}, 
+                        {"site":"起雲閣", "min":12},
+                        {"site":"熱海梅園", "min":12},
+                        {"site":"系川遊步道", "min":10},
+                        {"site":"熱海Sun Beach", "min":15},
+                        {"site":"親水公園", "min":14},
+                        {"site":"遊覽船", "min":14}
+                    ]
+                };
+                
+                //alert(jsonInfo[id][0].site);
+                var select = document.getElementById("sceneryBox");
+                for(var i = select.options.length - 1 ; i >= 0 ; --i)
+                {
+                    select.remove(i);
+                }
+
+                for (var i = 0; i < jsonInfo[id].length; ++i)
+                {
+                    var option = document.createElement("option");
+                    option.text = jsonInfo[id][i].site;
+                    select.add(option);
+                }
+            }
+            
+            function getStationInfo(id)
+            {
+                
+            }
+        </script>
+    </head>
+    <body bgcolor="#A0E6FA">
+        <span id="t1" class="tokai" style="left: 575px; top: 0px;">湯河源</span>
+        <span id="t2" class="tokai" style="left: 525px; top: 50px;" onclick="getInfos(this.id)">熱海</span>
+        <span id="t3" class="tokai" style="left: 350px; top: 50px;">函南</span>
+        <span id="t4" class="tokai" style="left: 150px; top: 50px;">三島</span>  
+        <span id="t5" class="tokai" style="left: 75px; top: 100px;">沼津</span>
+        
+        <span id="j1" class="jrito" style="left: 475px; top: 100px;" onclick="getInfos(this.id)">來宮</span>
+        <span id="j2" class="jrito" style="left: 475px; top: 175px;">伊豆多賀</span>
+        <span id="j3" class="jrito" style="left: 475px; top: 250px;">網代</span>
+        <span id="j4" class="jrito" style="left: 475px; top: 325px;">宇佐美</span>
+        
+        <span id="i1" class="izukyu" style="left: 525px; top: 375px;">伊東</span>
+        <span id="i2" class="izukyu" style="left: 525px; top: 425px;">南伊東</span>
+        <span id="i3" class="izukyu" style="left: 575px; top: 475px;">川奈</span>
+        <span id="i4" class="izukyu" style="left: 625px; top: 525px;">富戶</span>
+        <span id="i5" class="izukyu" style="left: 625px; top: 575px;">城崎海岸</span>
+        <span id="i6" class="izukyu" style="left: 625px; top: 625px;">伊豆高原</span>
+        <span id="i7" class="izukyu" style="left: 625px; top: 675px;">伊豆大川</span>
+        <span id="i8" class="izukyu" style="left: 625px; top: 725px;">伊豆北川</span>
+        <span id="i9" class="izukyu" style="left: 625px; top: 775px;">伊豆熱川</span>
+        <span id="i10" class="izukyu" style="left: 625px; top: 825px;">片瀨白田</span>
+        <span id="i11" class="izukyu" style="left: 625px; top: 875px;">伊豆稻取</span>
+        <span id="i12" class="izukyu" style="left: 575px; top: 925px;">今井浜海岸</span>
+        <span id="i13" class="izukyu" style="left: 525px; top: 975px;">河津</span>
+        <span id="i14" class="izukyu" style="left: 475px; top: 1025px;">稻梓</span>
+        <span id="i15" class="izukyu" style="left: 475px; top: 1075px;">蓮台寺</span>
+        <span id="i16" class="izukyu" style="left: 475px; top: 1125px;">伊豆急下田</span>
+        
+        <span id="s1" class="sunzuline" style="left: 150px; top: 100px;">三島廣小路</span>
+        <span id="s2" class="sunzuline" style="left: 200px; top: 150px;">三島田町</span>
+        <span id="s3" class="sunzuline" style="left: 200px; top: 200px;">三島二日町</span>
+        <span id="s4" class="sunzuline" style="left: 200px; top: 250px;">大場</span>
+        <span id="s5" class="sunzuline" style="left: 200px; top: 300px;">伊豆仁田</span>
+        <span id="s6" class="sunzuline" style="left: 200px; top: 350px;">原木</span>
+        <span id="s7" class="sunzuline" style="left: 200px; top: 400px;">韮山</span>
+        <span id="s8" class="sunzuline" style="left: 200px; top: 450px;">伊豆長岡</span>
+        <span id="s9" class="sunzuline" style="left: 200px; top: 500px;">田京</span>
+        <span id="s10" class="sunzuline" style="left: 200px; top: 550px;">大仁</span>
+        <span id="s11" class="sunzuline" style="left: 250px; top: 600px;">牧之鄉</span>
+        <span id="s12" class="sunzuline" style="left: 250px; top: 650px;">修善寺</span>
+        <table>
+            <tr>
+                <td bgcolor="#F68B1E" width="20"></td>
+                <td>tokai </td>
+                <td bgcolor="#009900" width="20"></td>
+                <td>jrito </td>
+                <td bgcolor="#0033FF" width="20"></td>
+                <td>izukyu </td>
+                <td bgcolor="#127BBF" width="20"></td>
+                <td>sunzuline </td>
+            </tr>
+        </table>
+        <select size="10" id="sceneryBox">
+            <!--<option selected>Plan 1
+            <option>Plan 2
+            <option>Plan 3
+            <option>Plan 4
+            <option>Plan 5-->
+        </select> 
+        
+    </body>
+</html>
