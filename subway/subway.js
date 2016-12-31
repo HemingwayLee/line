@@ -13,7 +13,7 @@
     var BLOCKSIZE = 30; //Basic scale for all graphics
     var TRACK_THICKNESS = 0.5; //Relative thickness of the track to one block
     var STATION_RADIUS = 0.45; //Relative radius of the station
-    var SMALL_STATION_RADIUS = 0.25; //Relative radius of the station
+    var SMALL_STATION_RADIUS = 0.25; //Relative radius of not important the station
     var CONNECTOR_RATIO = 0.55; //Relative thickness of connector, to station
     var STATION_LINE_THICKNESS = 0.1; //Absolute thickness of station boundary
     var LABEL_FONT_SIZE = 14; //Font size for station labels
@@ -148,7 +148,7 @@
     };
 
     Track.prototype.paint = function(paper) {
-        //[Kenny]
+
         if (typeof this.isArrow !== "undefined" && this.isArrow == true)
         {
             this.arrowHead(paper);
@@ -166,7 +166,6 @@
             }
         }
 
-        //[Kenny]
         var isDash = (typeof this.isDash !== "undefined" && this.isDash == true);
         var dashstyle = (isDash) ? "-" : "";
         paper.path(svg).attr({
@@ -178,7 +177,6 @@
     };
 
     Track.prototype.arrowHead = function(paper) {
-        //[Kenny]
         var len = this.segments.length;
         if (len > 1) {
             var elem = this.segments.pop();
@@ -201,7 +199,7 @@
         }
     };
 
-    function Station(ID, name, href, labelDir, labelTer, links, displayType, symbol, color, popupId) {
+    function Station(ID, name, href, labelDir, labelTer, links, displayType, symbol, color, popupId, textVertical) {
         this.name = name;
         this.href = href;
         this.labelDir = labelDir;
@@ -211,12 +209,11 @@
         this.ID = ID;
         //Terminals, Main glow, Link glow
         this.elements = [[], [], []];
-        
-        //[Kenny]
         this.displayType = displayType; 
         this.symbol = symbol;
         this.color = color;
         this.popupId = popupId;
+        this.textVertical = textVertical;
     }
 
     Station.prototype.addTerminal = function(trans) {
@@ -232,8 +229,6 @@
     };
 
     Station.prototype.paint = function(paper) {
-        
-        //[Kenny]
         var TypeEnum = {
             BIG : 1,
             SMALL : 2,
@@ -288,16 +283,14 @@
                 }
                 prevPt = this.terminals[i];
             }
-
         }
-        
+
         if (displayType != TypeEnum.NONE) 
         {
             //Inner layer
             prevPt = 0;
             for (i = 0; i < this.terminals.length; i++) 
             {
-                //[Kenny]
                 var innerSize = (displayType == TypeEnum.BIG) ? INNER_RADIUS : 0.25;
                 var innerColor = (typeof this.color !== "undefined") ? this.color : station_colors[1];
                 elem = paper.circle(this.terminals[i].x, this.terminals[i].y, BLOCKSIZE * innerSize).attr("fill", innerColor);
@@ -313,7 +306,6 @@
             }
         }
 
-        //[Kenny] 
         var symbol = (typeof this.symbol !== "undefined") ? this.symbol : "";
         var symbolSize = (symbol.length > 1) ? 1.5 : 1.8;
         for (i = 0; i < this.terminals.length; i++) {
@@ -335,10 +327,9 @@
         this.elements[1].hide();
         this.elements[2].hide();
 
-        //[Kenny]
         var isPopup = (typeof this.popupId !== "undefined");
         var popupId = this.popupId;
-        
+
         //Local references
         var mainElem = this.elements[1];
         var links = this.links;
@@ -347,7 +338,7 @@
         this.elements[0].mouseover(function() {
             mainElem.show();
             
-            if (displayType == TypeEnum.BIG) { //[Kenny]
+            if (displayType == TypeEnum.BIG) {
                 label.attr("font-weight", "bolder");
             }
             
@@ -370,7 +361,7 @@
                 $('#'+popupId).fadeIn('slow');
             }
         });
-        
+
         //Add the link
         this.elements[0].attr("href", this.href);
     };
@@ -432,10 +423,20 @@
                 alignment = "start";
                 break;
         }
+        
+        if (typeof this.textVertical !== "undefined" && this.textVertical == true) {
+            var verticalName = "";
+            for (var i = 0; i < this.name.length; ++i) {
+                verticalName += this.name[i];
+                verticalName += '\n';
+            }
+            this.name = verticalName;
+        }
+        
         var returnVal = paper.text(x, y, this.name).attr({
             "text-anchor": alignment,
-            "font-family": "sans-serif", //[Kenny]
-            "font-size": LABEL_FONT_SIZE
+            "font-family": "sans-serif",
+            "font-size": LABEL_FONT_SIZE //[NOTE] font size can be changed in the future...
         });
         return returnVal;
     };
@@ -565,10 +566,9 @@
                     var startingCoord = $(Element).data("start-point").split(",");
                     var newCoord = new Coordinate(parseInt(startingCoord[0], 10), parseInt(startingCoord[1], 10));
                     
-                    //[Kenny]
                     var isDash = $(Element).data("dash");
                     var isArrow = $(Element).data("arrow");
-                    var t = new Track($(Element).data("color"), newCoord, isDash, isArrow); //[Kenny]
+                    var t = new Track($(Element).data("color"), newCoord, isDash, isArrow);
                     obj.maxCoord(newCoord);
                     //Process each segment
                     $(Element).children().each(
@@ -591,11 +591,11 @@
                     var labelDir = $(Element).data("label-dir");
                     var labelTer = $(Element).data("label-ter");
                     var links = $(Element).data("link");
-                    
-                    //[kenny]
+
                     var displayType = $(Element).data("display-type");
                     var symbol = $(Element).data("symbol");
                     var color = $(Element).data("color");
+                    var textVertical = $(Element).data("text-vertical");
 
                     var i;
 
@@ -607,7 +607,7 @@
                         }
                     }
                     //Create the station
-                    var s = new Station(obj.stations.length, name, href, labelDir, labelTer, links, displayType, symbol, color, popupId); //[Kenny]
+                    var s = new Station(obj.stations.length, name, href, labelDir, labelTer, links, displayType, symbol, color, popupId, textVertical);
                     //Add each terminal(start from 1 to prevent overflow)
                     var terminals = $(Element).data("pos").split(/[,;]/);
                     for (i = 1; i <= terminals.length; i += 2) {
