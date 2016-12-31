@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>Subway Map Demo</title>
         <script src="./resources/jquery-1.9.1.min.js"></script>
         <script src="./resources/raphael.min.js"></script>
@@ -12,11 +13,12 @@
         <div id="subway">
         <!--<div id="subway" data-debug="true">-->
             <ul ID="subway-stations">
-                <li data-pos="2,3" data-label-dir="N">Atami</li>
-                <li data-pos="5,1"></li>
-                <li data-pos="4,4" data-Small="true"></li>
-                <li data-pos="6,2">Ito</li>
+                <li data-pos="2,3" data-label-dir="N" data-color="red">いずみ野線</li>
+                <li data-pos="5,1" data-symbol="H2" data-color="#00AAAA"></li>
+                <li data-pos="4,4" data-display-type="small" data-symbol="S">江ノ島</li>
+                <li data-pos="6,2" data-symbol="A">湘南モノレール</li>
                 <li data-pos="8,5; 9,7" data-label-dir="WN"><a href="https://www.google.com.tw">Google</a></li>
+                <li data-pos="1,6" data-display-type="none">東京方向</li>
             </ul>
         </div>
         <div style ="width:75%; margin-left:auto; margin-right:auto; height:100%">
