@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <title>Subway Map Demo</title>
+        <script src="./resources/jquery-1.9.1.min.js"></script>
+        <script src="./resources/raphael.min.js"></script>
+        <script src="./resources/scale.raphael.js"></script>
+        <script src="./resources/jquery.ba-throttle-debounce.min.js"></script>
+        <script src="./subway.js"></script>
+    </head>
+    <body>
+        <div id="subway" data-debug="true">
+            <ul class="subway-islands" data-island-name="Izu" data-background-color="#ddd" data-font-size="50px" data-font-color="#fff" data-sharp="true">
+                <li data-edge="0,0"></li>
+                <li data-edge="33,0"></li>
+                <li data-edge="25,8"></li>
+                <li data-edge="25,12"></li>
+                <li data-edge="24,13"></li>
+                <li data-edge="24,14"></li>
+                <li data-edge="27,17"></li>
+                <li data-edge="27,30"></li>
+                <li data-edge="26,31"></li>
+                <li data-edge="26,32"></li>
+                <li data-edge="25,33"></li>
+                <li data-edge="24,33"></li>
+                <li data-edge="19,38"></li>
+                <li data-edge="12,38"></li>
+                <li data-edge="7,33"></li>
+                <li data-edge="7,31"></li>
+                <li data-edge="5,29"></li>
+                <li data-edge="5,27"></li>
+                <li data-edge="4,26"></li>
+                <li data-edge="4,19"></li>
+                <li data-edge="3,18"></li>
+                <li data-edge="3,15"></li>
+                <li data-edge="8,15"></li>
+                <li data-edge="9,14"></li>
+                <li data-edge="9,12"></li>
+                <li data-edge="6,9"></li>
+                <li data-edge="0,9"></li>
+            </ul>
+            
+            <!--Tokai line-->
+            <ul class="subway-tracks" data-color="#F68B1E" data-start-point="30,30" data-dash="false">
+                <li data-dest="24,36"></li>
+                <li data-dest="10,36"></li>
+                <li data-dest="8,38"></li>
+                <li data-dest="0,38"></li>
+            </ul>
+            
+            <!--Shinkansen-->
+            <ul class="subway-tracks" data-color="gray" data-start-point="45,13" data-dash="true">
+                <li data-dest="45,13"></li>
+                <li data-dest="38,13"></li>
+                <li data-dest="29,22"></li>
+                <li data-dest="29,29"></li>
+                <li data-dest="23,35"></li>
+                <li data-dest="9,35"></li>
+                <li data-dest="0,35"></li>
+            </ul>
+            
+            <!--Gotemba-->
+            <ul class="subway-tracks" data-color="#F77321" data-start-point="8,38" data-dash="false">
+                <li data-dest="8,26"></li>
+                <li data-dest="10,24"></li>
+                <li data-dest="10,9"></li><!--gotemba-->
+                <li data-dest="14,5"></li>
+                <li data-dest="30,5"></li>
+                <li data-dest="36,12"></li>
+                <li data-dest="36,18"></li>
+                <li data-dest="35,18"></li>
+                <li data-dest="30,23"></li><!--xiaotienyuan31,22-->
+                <li data-dest="30,30"></li>    
+            </ul>
+            <ul class="subway-tracks" data-color="#F77321" data-start-point="35,18" data-dash="false">
+                <li data-dest="45,18"></li> <!--goufujin-->
+            </ul>
+            <!--Ito line-->
+            <ul class="subway-tracks" data-color="#009900" data-start-point="24,36">
+                <li data-dest="22,38"></li>
+                <li data-dest="22,42"></li>
+            </ul>
+            
+            <!--Shuzenji-->
+            <ul class="subway-tracks" data-color="#127BBF" data-start-point="13,36">
+                <li data-dest="13,38"></li>
+                <li data-dest="15,40"></li>
+                <li data-dest="15,42"></li>
+            </ul>
+            <!--hakone-->
+            <ul class="subway-tracks" data-color="F04A00" data-start-point="31,22">
+                <li data-dest="18,22"></li>
+                <li data-dest="13,17"></li>
+                <li data-dest="5,25"></li>
+                <li data-dest="0,25"></li>
+            </ul>
+            <!--hakone yeah-->
+            <ul class="subway-tracks" data-color="blue" data-start-point="6,28">
+            <li data-dest="2,32"></li>
+            
+            </ul>
+            <ul ID="subway-stations">
+                <li data-pos="26,34" data-label-dir="E" data-small="true">湯河原</li>
+                <li data-pos="24,36; 23,35" data-label-dir="ES">熱海</li>
+                <li data-pos="17,36" data-label-dir="S">函南</li>
+                <li data-pos="13,35; 13,36" data-label-dir="N">三島</li>
+                <li data-pos="8,38">沼津</li>
+                <li data-pos="6,38" data-small="true">片浜</li>
+                <li data-pos="8,36" data-label-dir="W" data-small="true">大岡</li>
+                <li data-pos="8,33" data-label-dir="W" data-small="true">下土狩</li>
+                <li data-pos="13,38" data-label-dir="W" data-small="true">三島廣小路</li>
+                <li data-pos="14,39" data-label-dir="W" data-small="true">三島田町</li>
+                <li data-pos="22,38" data-label-dir="E" data-small="true">來宮</li>
+                <li data-pos="31,22" data-label-dir="E" data-small="true">小田原</li>
+            </ul>
+        </div>
+        <div style ="width:75%; margin-left:auto; margin-right:auto; height:100%">
+            <div id="subway-display"></div>
+        </div>
+        <script>
+            window.onload = function(){
+                new OLSubway().create('subway-display','subway');
+            };
+        </script>
+</html>
