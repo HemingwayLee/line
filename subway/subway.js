@@ -16,7 +16,7 @@
     var SMALL_STATION_RADIUS = 0.25; //Relative radius of the station
     var CONNECTOR_RATIO = 0.55; //Relative thickness of connector, to station
     var STATION_LINE_THICKNESS = 0.1; //Absolute thickness of station boundary
-    var LABEL_FONT_SIZE = 15; //Font size for station labels
+    var LABEL_FONT_SIZE = 14; //Font size for station labels
     var GRID_COLOR = "#bbb"; //Colour of the grid
     var DEBOUNCE_TIME = 40;
     var ARROW = "M0,0 l0,0.5 0.5,-0.5 -0.5,-0.5z";//Arrow Head, defined in terms of blocksize, to be scaled later
@@ -201,7 +201,7 @@
         }
     };
 
-    function Station(ID, name, href, labelDir, labelTer, links, isSmall, symbol, color, popupId) {
+    function Station(ID, name, href, labelDir, labelTer, links, displayType, symbol, color, popupId) {
         this.name = name;
         this.href = href;
         this.labelDir = labelDir;
@@ -213,7 +213,7 @@
         this.elements = [[], [], []];
         
         //[Kenny]
-        this.isSmall = isSmall; 
+        this.displayType = displayType; 
         this.symbol = symbol;
         this.color = color;
         this.popupId = popupId;
@@ -233,13 +233,30 @@
 
     Station.prototype.paint = function(paper) {
         
-        var isBig = (typeof this.isSmall === "undefined" || this.isSmall != true);
-        if (isBig) //[Kenny]
+        //[Kenny]
+        var TypeEnum = {
+            BIG : 1,
+            SMALL : 2,
+            NONE : 3
+        }
+
+        var displayType = 0;
+        if (typeof this.displayType === "undefined") {
+            displayType = TypeEnum.BIG;
+        } else if (this.displayType == "small") {
+            displayType = TypeEnum.SMALL;
+        } else if (this.displayType == "none") {
+            displayType = TypeEnum.NONE;
+        } else {
+            displayType = TypeEnum.BIG;
+        }
+        
+        if (displayType == TypeEnum.BIG) 
         {
             //Outer layer
             var prevPt = 0;
             var elem;
-            for (var i = 0; i < this.terminals.length; i++) {
+            for (var i = 0; i < this.terminals.length; ++i) {
                 //Creates a station marker, size depeding on the layer it is at
                 elem = paper.circle(this.terminals[i].x, this.terminals[i].y, STATION_RADIUS * BLOCKSIZE).attr("fill", station_colors[0]);
                 this.elements[0].push(elem);
@@ -274,23 +291,26 @@
 
         }
         
-        //Inner layer
-        prevPt = 0;
-        for (i = 0; i < this.terminals.length; i++) 
+        if (displayType != TypeEnum.NONE) 
         {
-            //[Kenny]
-            var innerSize = (isBig) ? INNER_RADIUS : 0.25;
-            var innerColor = (typeof this.color !== "undefined") ? this.color : station_colors[1];
-            elem = paper.circle(this.terminals[i].x, this.terminals[i].y, BLOCKSIZE * innerSize).attr("fill", innerColor);
-            this.elements[0].push(elem);
-            if (prevPt !== 0) {
-                elem = paper.path("M" + prevPt + " L" + this.terminals[i]).attr({
-                    "stroke": station_colors[1],
-                    "stroke-width": BLOCKSIZE * INNER_CONECTOR
-                });
+            //Inner layer
+            prevPt = 0;
+            for (i = 0; i < this.terminals.length; i++) 
+            {
+                //[Kenny]
+                var innerSize = (displayType == TypeEnum.BIG) ? INNER_RADIUS : 0.25;
+                var innerColor = (typeof this.color !== "undefined") ? this.color : station_colors[1];
+                elem = paper.circle(this.terminals[i].x, this.terminals[i].y, BLOCKSIZE * innerSize).attr("fill", innerColor);
                 this.elements[0].push(elem);
+                if (prevPt !== 0) {
+                    elem = paper.path("M" + prevPt + " L" + this.terminals[i]).attr({
+                        "stroke": station_colors[1],
+                        "stroke-width": BLOCKSIZE * INNER_CONECTOR
+                    });
+                    this.elements[0].push(elem);
+                }
+                prevPt = this.terminals[i];
             }
-            prevPt = this.terminals[i];
         }
 
         //[Kenny] 
@@ -327,7 +347,7 @@
         this.elements[0].mouseover(function() {
             mainElem.show();
             
-            if (isBig) { //[Kenny]
+            if (displayType == TypeEnum.BIG) { //[Kenny]
                 label.attr("font-weight", "bolder");
             }
             
@@ -573,7 +593,7 @@
                     var links = $(Element).data("link");
                     
                     //[kenny]
-                    var isSmall = $(Element).data("small");
+                    var displayType = $(Element).data("display-type");
                     var symbol = $(Element).data("symbol");
                     var color = $(Element).data("color");
 
@@ -587,7 +607,7 @@
                         }
                     }
                     //Create the station
-                    var s = new Station(obj.stations.length, name, href, labelDir, labelTer, links, isSmall, symbol, color, popupId); //[Kenny]
+                    var s = new Station(obj.stations.length, name, href, labelDir, labelTer, links, displayType, symbol, color, popupId); //[Kenny]
                     //Add each terminal(start from 1 to prevent overflow)
                     var terminals = $(Element).data("pos").split(/[,;]/);
                     for (i = 1; i <= terminals.length; i += 2) {
