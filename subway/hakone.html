@@ -42,7 +42,10 @@
             </ul>
             
             <!--Tokai line-->
-            <ul class="subway-tracks" data-color="#F68B1E" data-start-point="30,30" data-dash="false">
+            <ul class="subway-tracks" data-color="#F68B1E" data-start-point="43,18" data-dash="false">
+                <li data-dest="35,18"></li> <!--goufujin-->
+                <li data-dest="30,23"></li><!--xiaotienyuan31,22-->
+                <li data-dest="30,30"></li>
                 <li data-dest="24,36"></li>
                 <li data-dest="10,36"></li>
                 <li data-dest="8,38"></li>
@@ -50,9 +53,8 @@
             </ul>
             
             <!--Shinkansen-->
-            <ul class="subway-tracks" data-color="gray" data-start-point="45,13" data-dash="true">
-                <li data-dest="45,13"></li>
-                <li data-dest="38,13"></li>
+            <ul class="subway-tracks" data-color="gray" data-start-point="43,15" data-dash="true">
+                <li data-dest="36,15"></li>
                 <li data-dest="29,22"></li>
                 <li data-dest="29,29"></li>
                 <li data-dest="23,35"></li>
@@ -62,20 +64,20 @@
             
             <!--Gotemba-->
             <ul class="subway-tracks" data-color="#F77321" data-start-point="8,38" data-dash="false">
-                <li data-dest="8,26"></li>
-                <li data-dest="10,24"></li>
-                <li data-dest="10,9"></li><!--gotemba-->
-                <li data-dest="14,5"></li>
-                <li data-dest="30,5"></li>
-                <li data-dest="36,12"></li>
-                <li data-dest="36,18"></li>
+                <li data-dest="8,19"></li>
+                <li data-dest="16,11"></li><!--gotemba-->
+                <li data-dest="28,11"></li>
                 <li data-dest="35,18"></li>
-                <li data-dest="30,23"></li><!--xiaotienyuan31,22-->
-                <li data-dest="30,30"></li>    
             </ul>
-            <ul class="subway-tracks" data-color="#F77321" data-start-point="35,18" data-dash="false">
-                <li data-dest="45,18"></li> <!--goufujin-->
+            
+            <!--Odakyu Odawara Line-->
+            <ul class="subway-tracks" data-color="#2288CC" data-start-point="31,22" data-dash="false">
+                <li data-dest="31,18"></li>
+                <li data-dest="27,14"></li>
+                <li data-dest="27,12"></li>
+                <li data-dest="31,8"></li>
             </ul>
+            
             <!--Ito line-->
             <ul class="subway-tracks" data-color="#009900" data-start-point="24,36">
                 <li data-dest="22,38"></li>
@@ -88,34 +90,83 @@
                 <li data-dest="15,40"></li>
                 <li data-dest="15,42"></li>
             </ul>
+            
             <!--hakone-->
-            <ul class="subway-tracks" data-color="F04A00" data-start-point="31,22">
+            <ul class="subway-tracks" data-color="#F04A00" data-start-point="31,22">
+                <li data-dest="30,23"></li>
+                <li data-dest="27,23"></li>
+                <li data-dest="24,26"></li>
+                <li data-dest="22,26"></li>
                 <li data-dest="18,22"></li>
-                <li data-dest="13,17"></li>
-                <li data-dest="5,25"></li>
-                <li data-dest="0,25"></li>
+                <li data-dest="13,27"></li>
             </ul>
-            <!--hakone yeah-->
-            <ul class="subway-tracks" data-color="blue" data-start-point="6,28">
-            <li data-dest="2,32"></li>
             
             </ul>
             <ul ID="subway-stations">
-                <li data-pos="26,34" data-label-dir="E" data-small="true">湯河原</li>
+                <li data-pos="26,34" data-label-dir="E" data-display-type="small">湯河原</li>
+                <li data-pos="28,32" data-label-dir="E" data-display-type="small">真鶴</li>
+                <li data-pos="30,30" data-label-dir="E" data-display-type="small">根府川</li>
+                <li data-pos="30,24" data-label-dir="E" data-display-type="small">早川</li>
+                <li data-pos="31,22, 30,21" data-label-dir="E">小田原</li>
+                <li data-pos="33,20" data-label-dir="E" data-display-type="small">鴨宮</li>
+                <li data-pos="37,18" data-label-dir="S" data-display-type="small">二宮</li>
+                
+                <li data-pos="28,23" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 箱根板橋</li>
+                <li data-pos="27,23" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 風祭</li>
+                <li data-pos="26,24" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 入生田</li>
+                <li data-pos="24,26" data-label-dir="S" data-text-vertical="true"> 箱根湯本</li>
+                <li data-pos="23,26" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 塔ノ沢</li>
+                
+                <li data-pos="22,26" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 大平台</li>
+                <li data-pos="21,25" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 宮ノ下</li>
+                <li data-pos="20,24" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 小涌谷</li>
+                <li data-pos="19,23" data-label-dir="S" data-text-vertical="true"> 彫刻の森</li>
+                <li data-pos="18,22" data-label-dir="S" data-text-vertical="true"> 強羅</li>
+                
+                <li data-pos="17,23" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 公園下</li>
+                <li data-pos="16,24" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 公園上</li>
+                <li data-pos="15,25" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 中強羅</li>
+                <li data-pos="14,26" data-label-dir="S" data-display-type="small" data-text-vertical="true"> 上強羅</li>
+                <li data-pos="13,27" data-label-dir="S" data-text-vertical="true"> 早雲山</li>
+                
                 <li data-pos="24,36; 23,35" data-label-dir="ES">熱海</li>
-                <li data-pos="17,36" data-label-dir="S">函南</li>
+                <li data-pos="17,36" data-label-dir="S" data-display-type="small">函南</li>
+                <li data-pos="22,38" data-label-dir="E">來宮</li>
                 <li data-pos="13,35; 13,36" data-label-dir="N">三島</li>
                 <li data-pos="8,38">沼津</li>
-                <li data-pos="6,38" data-small="true">片浜</li>
-                <li data-pos="8,36" data-label-dir="W" data-small="true">大岡</li>
-                <li data-pos="8,33" data-label-dir="W" data-small="true">下土狩</li>
-                <li data-pos="13,38" data-label-dir="W" data-small="true">三島廣小路</li>
-                <li data-pos="14,39" data-label-dir="W" data-small="true">三島田町</li>
-                <li data-pos="22,38" data-label-dir="E" data-small="true">來宮</li>
-                <li data-pos="31,22" data-label-dir="E" data-small="true">小田原</li>
+                <li data-pos="6,38" data-display-type="small">片浜</li>
+                <li data-pos="13,38" data-label-dir="W" data-display-type="small">三島廣小路</li>
+                <li data-pos="14,39" data-label-dir="W" data-display-type="small">三島田町</li>
+                
+                <li data-pos="8,36" data-label-dir="W" data-display-type="small">大岡</li>
+                <li data-pos="8,33" data-label-dir="W" data-display-type="small">下土狩</li>
+                
+                <li data-pos="8,30" data-label-dir="W" data-display-type="small">長泉なめり</li>
+                <li data-pos="8,27" data-label-dir="W" data-display-type="small">裾野</li>
+                <li data-pos="8,24" data-label-dir="W" data-display-type="small">岩波</li>
+                <li data-pos="8,21" data-label-dir="W" data-display-type="small">富士岡</li>
+                <li data-pos="8,19" data-label-dir="W" data-display-type="small">南御殿場</li>
+                <li data-pos="10,17" data-label-dir="W" data-display-type="small">御殿場</li>
+                <li data-pos="12,15" data-label-dir="W" data-display-type="small">足柄</li>
+                <li data-pos="14,13" data-label-dir="W" data-display-type="small">駿河小山</li>
+                <li data-pos="16,11" data-label-dir="N" data-display-type="small" data-text-vertical="true">谷峨 </li>
+                <li data-pos="19,11" data-label-dir="N" data-display-type="small" data-text-vertical="true">山北 </li>
+                <li data-pos="22,11" data-label-dir="N" data-display-type="small" data-text-vertical="true">東山北 </li>
+                <li data-pos="26,11" data-label-dir="N" data-display-type="small" data-text-vertical="true">松田 </li>
+                <li data-pos="29,12" data-label-dir="E" data-display-type="small">相模金子</li>
+                <li data-pos="31,14" data-label-dir="W" data-display-type="small">上大井</li>
+                <li data-pos="33,16" data-label-dir="W" data-display-type="small">下曽我</li>
+                <li data-pos="35,18" data-label-dir="S" data-display-type="small">国府津</li>
+            
+                <li data-pos="31,18" data-label-dir="W" data-display-type="small">足柄</li>
+                <li data-pos="30,17" data-label-dir="W" data-display-type="small">螢田</li>
+                <li data-pos="29,16" data-label-dir="W" data-display-type="small">富水</li>
+                <li data-pos="28,15" data-label-dir="W" data-display-type="small">栢山</li>
+                <li data-pos="27,14" data-label-dir="W" data-display-type="small">開成</li>
+                <li data-pos="27,12" data-label-dir="W" data-display-type="small">新松田</li>
             </ul>
         </div>
-        <div style ="width:75%; margin-left:auto; margin-right:auto; height:100%">
+        <div style ="width:100%; margin-left:auto; margin-right:auto; height:100%">
             <div id="subway-display"></div>
         </div>
         <script>
