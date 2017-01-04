@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>My First Tiles</title>
+    <link href="./MetroJs/MetroJs.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="tiles">
+        <!--This is a basic tile-->
+        <div class="live-tile">
+            <div style="background-color:purple;">Basic First Tile</div>
+            <div style="background-color:Orange;">Basic Second Tile</div>
+        </div>
+        
+        <!--This is a bounce tile -->
+        <div class="live-tile" data-bounce="true">
+            <div style="background-color:Red;">Click Me</div>
+            <div style="background-color:Orange;">I can be clicked</div>
+        </div>
+        
+        <!--This is a flip tile -->
+        <div class="live-tile" data-mode="flip">
+            <div style="background-color:green;">I can flip</div>
+            <div style="background-color:red;">Yes, I can flip</div>
+        </div>
+        
+        <!--This is a horizontal tile -->
+        <div class="live-tile" data-direction="horizontal">
+            <div style="background-color:green;">horizontal</div>
+            <div style="background-color:red;">I move horizontally</div>
+        </div>
+        
+        <!--This is a tile with title -->
+        <div class="live-tile">
+            <span class="tile-title">I am the title</span>
+            <div style="background-color:green;">Hello</div>
+            <div style="background-color:red;">World</div>
+        </div>
+
+        <!--This is a tile with title with picture-->
+        <div class="live-tile">
+            <div>
+                <span class="tile-title">This is a Ramen</span>
+                <img class="full" src="./images/karatsu/Karatsu_castle.png"/>
+            </div>
+            <div style="background-color:blue;">Show me the picture</div>
+        </div>
+        
+        <!--This is a tile with 2 pictures-->
+        <div class="live-tile">
+            <div><img class="full" src="./images/karatsu/Nanatsunasama.jpg"/></div>
+            <div><img class="full" src="./images/karatsu/GENKAI.jpg"/></div>
+        </div>
+        
+        <!--This is speed -->
+        <div class="live-tile" data-speed="500">
+            <div style="background-color:pink;">Speed</div>
+        </div>
+        
+        <!--This is speed -->
+        <div class="live-tile" data-delay="1500">
+            <div style="background-color:blue;">Delay</div>
+            <div style="background-color:green;">Goes quickly</div>
+        </div>
+        
+        <!--This is a two-wide tile -->
+        <div class="live-tile two-wide">
+            <div style="background-color:Red;">I am a big tile</div>
+            <div><img class="full" src="./images/karatsu/Rainbow_Matsubara.jpg"/></div>
+        </div>
+        
+        <!--This is a two-wide two-tall tile -->
+        <div class="live-tile three-wide two-tall">
+            <div style="background-color:Red;">I am a Huge tile</div>
+            <div style="background-color:Orange;">This is a Huge tile</div>
+        </div>
+    </div>
+    
+    
+    <script src="./MetroJs/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="./MetroJs/MetroJs.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".live-tile,.flip-list").liveTile();
+        });
+    </script>
+</body>
+</html>
