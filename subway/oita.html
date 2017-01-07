@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <title>Subway Map Demo</title>
+        <script src="./resources/jquery-1.9.1.min.js"></script>
+        <script src="./resources/raphael.min.js"></script>
+        <script src="./resources/scale.raphael.js"></script>
+        <script src="./resources/jquery.ba-throttle-debounce.min.js"></script>
+        <script src="./subway.js"></script>
+    </head>
+    <body>
+        <div id="subway" data-debug="true">
+            <ul class="subway-islands" data-island-name="Saga" data-background-color="#ddd" data-font-size="50px" data-font-color="#fff" data-sharp="true">
+                <li data-edge="30,35"></li>
+                <li data-edge="0,35"></li>
+                <li data-edge="0,2"></li>
+                <li data-edge="2,0"></li>
+                <li data-edge="8,6"></li>
+                <li data-edge="10,6"></li>
+                <li data-edge="13,3"></li>
+                <li data-edge="20,10"></li>
+                <li data-edge="14,16"></li>
+                <li data-edge="14,18"></li>
+                <li data-edge="20,24"></li>
+                <li data-edge="25,24"></li>
+                <li data-edge="27,22"></li>
+            </ul>
+            <!--rifong line-->
+            <ul class="subway-tracks" data-color="blue" data-start-point="30,0" data-dash="false">
+                <li data-dest="30,3"></li>
+                <li data-dest="28,5"></li>
+                <li data-dest="24,5"></li>
+                <li data-dest="24,11"></li>
+                <li data-dest="26,13"></li>
+                <li data-dest="28,13"></li>
+                <li data-dest="30,15"></li><!--oita-->
+                <li data-dest="36,15"></li>
+                <li data-dest="38,17"></li>
+                <li data-dest="38,20"></li>
+            </ul>
+            
+            <!--gudai line-->
+            <ul class="subway-tracks" data-color="green" data-start-point="30,17" data-dash="false">
+                <li data-dest="32,19"></li>
+                <li data-dest="32,20"></li>
+                <li data-dest="30,20"></li>
+                <li data-dest="27,23"></li>
+                <li data-dest="25,23"></li>
+                <li data-dest="22,26"></li>
+                <li data-dest="16,26"></li>
+                <li data-dest="16,23"></li>s06
+                <li data-dest="18,21"></li>
+                <li data-dest="16,19"></li>
+                <li data-dest="14,21"></li>
+                <li data-dest="11,21"></li>
+                <li data-dest="8,24"></li>
+                <li data-dest="5,24"></li>
+            </ul>
+            <!--fongfei line-->
+            <ul class="subway-tracks" data-color="red" data-start-point="30,16" data-dash="false">
+                <li data-dest="31,16"></li>
+                <li data-dest="33,18"></li>
+                <li data-dest="33,25"></li>
+                <li data-dest="35,27"></li>
+                
+            </ul>
+            
+            <ul ID="subway-stations">
+                <li data-pos="30,3" data-label-dir="E" data-text-vertical="true">大神</li>
+                <li data-pos="28,5" data-label-dir="S" data-display-type="small" data-text-vertical="true">日出</li>
+                <li data-pos="26,5" data-label-dir="S" data-display-type="small" data-text-vertical="true">暘谷</li>
+                <li data-pos="24,5" data-label-dir="W" data-display-type="small" data-text-vertical="false">豐後豐岡</li>
+                <li data-pos="24,7" data-label-dir="W" data-display-type="small" data-text-vertical="false">龜川</li>
+                <li data-pos="24,9" data-label-dir="W" data-display-type="small" data-text-vertical="false">別府大學</li>
+                <li data-pos="24,11" data-label-dir="W" data-text-vertical="false">別府</li>
+                <li data-pos="26,13" data-label-dir="S" data-display-type="small" data-text-vertical="true">東別府</li> 
+                <li data-pos="28,13" data-label-dir="S" data-display-type="small" data-text-vertical="true">西大分</li>
+                <li data-pos="30,15;30,17" data-label-dir="N" data-text-vertical="true">大分</li>              
+                <li data-pos="31,15" data-label-dir="N" data-display-type="small" data-text-vertical="true">牧</li>
+                <li data-pos="32,15" data-label-dir="N" data-display-type="small" data-text-vertical="true">高城</li>
+                <li data-pos="33,15" data-label-dir="N" data-display-type="small" data-text-vertical="true">鶴崎</li>
+                <li data-pos="34,15" data-label-dir="N" data-display-type="small" data-text-vertical="true">大在</li>
+                <li data-pos="35,15" data-label-dir="N" data-display-type="small" data-text-vertical="true">坂市</li>
+                <li data-pos="36,15" data-label-dir="N" data-display-type="small" data-text-vertical="true">幸崎</li>
+                <li data-pos="38,17" data-label-dir="W" data-display-type="small" data-text-vertical="false">佐志生</li>
+                <li data-pos="38,19" data-label-dir="W" data-display-type="small" data-text-vertical="false">下江</li>
+                <li data-pos="30,20" data-label-dir="S" data-display-type="small" data-text-vertical="true">古囯府</li>
+                <li data-pos="27,23" data-label-dir="S" data-display-type="small" data-text-vertical="true">南大分</li>
+                <li data-pos="25,23" data-label-dir="S" data-display-type="small" data-text-vertical="true">賀來</li>
+                <li data-pos="22,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">豐後囯分</li>
+                <li data-pos="21,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">向之原</li>
+                <li data-pos="20,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">鬼瀨</li>
+                <li data-pos="19,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">小野屋</li>
+                <li data-pos="18,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">天神山</li>
+                <li data-pos="17,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">庄內</li>
+                <li data-pos="16,26" data-label-dir="S" data-display-type="small" data-text-vertical="true">湯平</li>
+                <li data-pos="16,23" data-label-dir="W" data-display-type="small" data-text-vertical="false">南由布</li>
+                <li data-pos="17,20" data-label-dir="NE" data-text-vertical="false">由布院</li>
+                <li data-pos="11,21" data-label-dir="S" data-display-type="small" data-text-vertical="true">野矢</li>
+                <li data-pos="8,24" data-label-dir="S" data-display-type="small" data-text-vertical="true">豐後中村</li>
+                <li data-pos="33,19" data-label-dir="E" data-display-type="small" data-text-vertical="false">滝尾</li>
+                <li data-pos="33,21" data-label-dir="E" data-display-type="small" data-text-vertical="false">敷戶</li>
+                <li data-pos="33,23" data-label-dir="E" data-display-type="small" data-text-vertical="false">大分大學前</li>
+                
+            </ul>
+        </div>
+        <div style ="width:100%; margin-left:auto; margin-right:auto; height:100%">
+            <div id="subway-display"></div>
+        </div>
+        <script>
+            window.onload = function(){
+                new OLSubway().create('subway-display','subway');
+            };
+        </script>
+</html>
